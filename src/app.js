@@ -1,7 +1,7 @@
 import express from "express";
 import db from "./utils/database.js";
 import todos from "./models/todos.model.js";
-
+import cors from "cors"
 const PORT = process.env.PORT || 8000;
 
 todos;
@@ -15,7 +15,9 @@ db.sync()
   .catch((err) => console.log(err));
 
 const app = express();
-
+app.use(cors({
+    origin: '*'
+}));
 app.use(express.json());
 
 app.get("/", (req, res) => {
